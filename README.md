@@ -20,7 +20,7 @@
 ## 🚀 Getting Started
 
 ### 1. Download & Installation
-1. Go to the [Releases](https://github.com/YOUR_USERNAME/YOUR_REPO/releases) page and download **`PulseAutoClicker_v1.0.zip`** (or **`PulseAutoClicker_Setup.exe`**).
+1. Go to the [Releases](https://github.com/kebabcode1/pulse-autoclicker/releases/tag/main) page and download **`PulseAutoClicker_v1.0.zip`** (or **`PulseAutoClicker_Setup.exe`**).
 2. Extract the `.zip` archive to any folder on your computer.
 3. Run **`PulseAutoClicker_Setup.exe`** to install the application and create desktop shortcuts.
 
