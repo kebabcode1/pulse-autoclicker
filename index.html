@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Pulse AutoClicker - Modern, High-Precision Windows AutoClicker & Macro Engine. Sub-millisecond click timing, 2-decimal precision, dual trigger modes, and HWID key protection.">
+  <meta name="keywords" content="autoclicker, pulse autoclicker, high precision autoclicker, windows autoclicker, 500 cps, macro engine, hold mode autoclicker">
+  <title>Pulse AutoClicker — High-Precision Windows AutoClicker Engine</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="logo">
+          <div class="logo-icon">⚡</div>
+          <span>Pulse AutoClicker</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#simulator">Simulator</a></li>
+          <li><a href="#activation">Activation</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="#download" class="nav-cta" id="nav-download-btn">Download Setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="download">
+    <div class="container">
+      <div class="hero-badge">⚡ Sub-Millisecond Windows Click Engine • v1.0 Release</div>
+      <h1>The <span>Fastest AutoClicker</span> for Windows</h1>
+      <p>Sub-millisecond click execution, 2-decimal precision (up to 500.00 CPS), dual trigger modes (Toggle & Hold), global unfocused hotkeys, and JSON preset persistence.</p>
+      
+      <div class="hero-buttons">
+        <a href="../target/release/PulseAutoClicker_Setup.exe" class="btn-primary" id="main-download-exe">
+          <span>📦 Download Installer (.exe)</span>
+        </a>
+        <a href="../target/release/PulseAutoClicker_v1.0.zip" class="btn-secondary" id="main-download-zip">
+          <span>🗜️ Download Archive (.zip)</span>
+        </a>
+      </div>
+
+      <!-- Live Simulator Component -->
+      <div class="simulator-box" id="simulator">
+        <div class="sim-header">
+          <div class="sim-title">⚡ Interactive Pulse Click Engine Simulator</div>
+          <div class="sim-badge">Live Hardware Demo</div>
+        </div>
+
+        <div class="sim-grid">
+          <div class="sim-control">
+            <label for="sim-cps-slider">Clicks Per Second (CPS)</label>
+            <div class="sim-slider-row">
+              <input type="range" id="sim-cps-slider" min="0.01" max="100" step="0.01" value="28.52">
+              <span class="sim-val-badge" id="sim-cps-val">28.52 CPS</span>
+            </div>
+          </div>
+
+          <div class="sim-control">
+            <label for="sim-duty-slider">Click Duty Cycle (Hold %)</label>
+            <div class="sim-slider-row">
+              <input type="range" id="sim-duty-slider" min="0.01" max="99.99" step="0.01" value="50.00">
+              <span class="sim-val-badge" id="sim-duty-val">50.00 %</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="click-target-btn" id="click-target-btn">
+          🎯 Click Here to Test Speed & Timing
+        </button>
+
+        <div style="margin-top: 16px;">
+          <button class="btn-primary" id="sim-toggle-btn" style="width: 100%; justify-content: center; padding: 12px;">
+            ▶ Test AutoClicker Engine
+          </button>
+        </div>
+
+        <div class="click-stat-row">
+          <div>
+            <div class="stat-number" id="live-cps-stat">0.0</div>
+            <div class="stat-label">Measured CPS</div>
+          </div>
+          <div>
+            <div class="stat-number" id="total-clicks-stat">0</div>
+            <div class="stat-label">Total Clicks</div>
+          </div>
+          <div>
+            <div class="stat-number" style="color: var(--accent-cyan);">0.001 ms</div>
+            <div class="stat-label">Timing Precision</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>Built for Speed, Precision & Control</h2>
+        <p>Engineered in Rust with native Windows Win32 API calls for maximum performance and low memory overhead.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card" id="feature-speed">
+          <div class="feature-icon">⚡</div>
+          <h3>500+ CPS Engine</h3>
+          <p>Powered by Win32 <code>SendInput</code> and high-precision timer calls (<code>timeBeginPeriod</code>) for instant, sub-millisecond click execution.</p>
+        </div>
+
+        <div class="feature-card" id="feature-precision">
+          <div class="feature-icon">🎯</div>
+          <h3>2-Decimal Precision</h3>
+          <p>Fine-tune both your Click Rate (e.g. <code>28.52 CPS</code>) and Duty Cycle (e.g. <code>50.00 %</code>) down to two exact decimal places.</p>
+        </div>
+
+        <div class="feature-card" id="feature-modes">
+          <div class="feature-icon">🕹️</div>
+          <h3>Toggle & Hold Modes</h3>
+          <p>Choose between <strong>Toggle Mode</strong> (press key to start/stop) and <strong>Hold Mode</strong> (auto-clicks while key is held down).</p>
+        </div>
+
+        <div class="feature-card" id="feature-hotkeys">
+          <div class="feature-icon">🌐</div>
+          <h3>Global Unfocused Listener</h3>
+          <p>Listens for hotkey triggers system-wide even when Pulse AutoClicker is running unfocused in the background. Supports mouse buttons (Left, Right, Middle, X1, X2).</p>
+        </div>
+
+        <div class="feature-card" id="feature-presets">
+          <div class="feature-icon">💾</div>
+          <h3>JSON Preset Manager</h3>
+          <p>Create, save, and delete custom click configurations. Saved configurations persist automatically in <code>presets.json</code>.</p>
+        </div>
+
+        <div class="feature-card" id="feature-hwid">
+          <div class="feature-icon">🔒</div>
+          <h3>HWID Key Binding</h3>
+          <p>Cryptographically locks license access keys to your computer's Hardware ID (HWID) with instant auto-login on launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activation Guide Section -->
+  <section class="activation-section" id="activation">
+    <div class="container">
+      <div class="section-header">
+        <h2>Simple 4-Step Key Activation</h2>
+        <p>Pulse AutoClicker uses Hardware ID (HWID) license binding for seamless, 1-person key protection.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h4>Download & Install</h4>
+          <p>Run <code>PulseAutoClicker_Setup.exe</code> to install Pulse AutoClicker onto your Windows PC.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h4>Copy System HWID</h4>
+          <p>Launch the app. On the login screen, click <strong><code>📋 Copy HWID</code></strong> to copy your unique system hardware ID.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h4>Receive Access Key</h4>
+          <p>Send your HWID to your seller/admin to receive your mathematically locked key (<code>PA-XXXX-XXXX-XX</code>).</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">04</div>
+          <h4>Activate & Auto-Login</h4>
+          <p>Paste your key and click <strong>Activate</strong>. Pulse AutoClicker will auto-log in every time you open the app!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about installation, security, and usage.</p>
+      </div>
+
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Does Pulse AutoClicker work when minimized or unfocused?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Yes! Pulse AutoClicker uses a background Windows event thread (<code>GetAsyncKeyState</code>) that detects key and mouse presses system-wide even when you are focused on a game or application.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What should I do if Windows SmartScreen or Chrome blocks the download?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Because Pulse AutoClicker is a newly published independent application that simulates hardware input calls (<code>SendInput</code>), security scanners may show a warning:
+            <br><br>
+            • <strong>Windows SmartScreen</strong>: Click <em>More Info</em> -> <em>Run Anyway</em>.<br>
+            • <strong>Google Chrome</strong>: Go to Downloads (<code>Ctrl + J</code>) -> Click <em>Keep dangerous file</em> -> <em>Keep anyway</em>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How do I uninstall Pulse AutoClicker?</span>
+            <span>+</span>
+          </div>
+          <div class="faq-answer" style="display: none;">
+            Pulse AutoClicker includes a native uninstaller (<code>pulseuninstaller.exe</code>) integrated into Windows Control Panel. Simply go to <strong>Windows Settings -> Apps -> Installed Apps -> Pulse AutoClicker -> Uninstall</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Pulse AutoClicker. Built for High-Precision Windows Performance.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
