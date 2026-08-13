@@ -1,128 +1,110 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Live CPS Simulator Logic
-  const cpsSlider = document.getElementById('sim-cps-slider');
-  const cpsValDisplay = document.getElementById('sim-cps-val');
-  const dutySlider = document.getElementById('sim-duty-slider');
-  const dutyValDisplay = document.getElementById('sim-duty-val');
-  const clickTargetBtn = document.getElementById('click-target-btn');
-
-  const liveCpsStat = document.getElementById('live-cps-stat');
-  const totalClicksStat = document.getElementById('total-clicks-stat');
-
-  let totalClicks = 0;
-  let autoClickInterval = null;
-  let isAutoClicking = false;
-  let clicksInCurrentSecond = 0;
-
-  // Slider Updates
-  if (cpsSlider && cpsValDisplay) {
-    cpsSlider.addEventListener('input', (e) => {
-      cpsValDisplay.textContent = parseFloat(e.target.value).toFixed(2) + ' CPS';
-      if (isAutoClicking) {
-        restartSimulator();
-      }
-    });
-  }
-
-  if (dutySlider && dutyValDisplay) {
-    dutySlider.addEventListener('input', (e) => {
-      dutyValDisplay.textContent = parseFloat(e.target.value).toFixed(2) + ' %';
-    });
-  }
-
-  // Interactive Target Clicker
-  if (clickTargetBtn) {
-    clickTargetBtn.addEventListener('click', () => {
-      triggerClickAnimation();
-      totalClicks++;
-      clicksInCurrentSecond++;
-      updateStatsUI();
-    });
-  }
-
-  function triggerClickAnimation() {
-    clickTargetBtn.style.transform = 'scale(0.97)';
-    clickTargetBtn.style.borderColor = 'var(--accent-green)';
-    setTimeout(() => {
-      clickTargetBtn.style.transform = 'scale(1)';
-      clickTargetBtn.style.borderColor = 'var(--accent-cyan)';
-    }, 80);
-  }
-
-  function updateStatsUI() {
-    if (totalClicksStat) {
-      totalClicksStat.textContent = totalClicks.toLocaleString();
-    }
-  }
-
-  // CPS Counter Measurement Loop
-  setInterval(() => {
-    if (liveCpsStat) {
-      liveCpsStat.textContent = clicksInCurrentSecond.toFixed(1);
-    }
-    clicksInCurrentSecond = 0;
-  }, 1000);
-
-  // AutoClicker Simulation Switch Toggle
-  const simToggleBtn = document.getElementById('sim-toggle-btn');
-  if (simToggleBtn) {
-    simToggleBtn.addEventListener('click', () => {
-      if (isAutoClicking) {
-        stopSimulator();
-      } else {
-        startSimulator();
-      }
-    });
-  }
-
-  function startSimulator() {
-    isAutoClicking = true;
-    if (simToggleBtn) {
-      simToggleBtn.textContent = '⏹ Stop Simulator';
-      simToggleBtn.style.background = 'linear-gradient(135deg, #e63946, #b00020)';
-    }
-
-    const cps = parseFloat(cpsSlider ? cpsSlider.value : 50);
-    const intervalMs = Math.max(10, 1000 / cps);
-
-    autoClickInterval = setInterval(() => {
-      triggerClickAnimation();
-      totalClicks++;
-      clicksInCurrentSecond++;
-      updateStatsUI();
-    }, intervalMs);
-  }
-
-  function stopSimulator() {
-    isAutoClicking = false;
-    if (autoClickInterval) {
-      clearInterval(autoClickInterval);
-      autoClickInterval = null;
-    }
-    if (simToggleBtn) {
-      simToggleBtn.textContent = '▶ Test AutoClicker Engine';
-      simToggleBtn.style.background = 'linear-gradient(135deg, var(--accent-cyan), var(--accent-blue))';
-    }
-  }
-
-  function restartSimulator() {
-    stopSimulator();
-    startSimulator();
-  }
-
-  // FAQ Accordion Toggle
-  const faqItems = document.querySelectorAll('.faq-item');
-  faqItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      const answer = item.querySelector('.faq-answer');
-      const isVisible = answer.style.display === 'block';
-      
-      // Close all
-      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
-      
-      if (!isVisible) {
-        answer.style.display = 'block';
-      }
-    });
-  });
+    initCPSDemoSlider();
+    initFAQAccordion();
+    initMockupControls();
 });
+
+function initCPSDemoSlider() {
+    const slider = document.getElementById('cps-slider');
+    const badgeVal = document.getElementById('cps-val');
+    const liveCounter = document.getElementById('live-cps-counter');
+
+    if (!slider || !badgeVal || !liveCounter) return;
+
+    slider.addEventListener('input', (e) => {
+        const val = parseFloat(e.target.value).toFixed(2);
+        badgeVal.textContent = `${val} CPS`;
+        liveCounter.textContent = val;
+    });
+}
+
+function initFAQAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+        item.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(i => i.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+function initMockupControls() {
+    const toggleBtn = document.getElementById('demo-toggle-btn');
+    const statusText = document.getElementById('status-tag-text');
+    let isRunning = true;
+
+    if (!toggleBtn || !statusText) return;
+
+    toggleBtn.addEventListener('click', () => {
+        isRunning = !isRunning;
+        if (isRunning) {
+            toggleBtn.textContent = 'Stop (F6)';
+            toggleBtn.style.background = 'var(--accent-crimson)';
+            statusText.textContent = 'Running (Synced 240Hz)';
+        } else {
+            toggleBtn.textContent = 'Start (F6)';
+            toggleBtn.style.background = 'var(--accent-blue)';
+            statusText.textContent = 'Stopped';
+        }
+    });
+
+    const segmentBtns = document.querySelectorAll('.mockup-body .segment-btn');
+    segmentBtns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const soundType = btn.getAttribute('data-sound');
+            if (soundType) {
+                playWebAudioSound(soundType);
+            }
+        });
+    });
+}
+
+function playWebAudioSound(type) {
+    if (type === 'off') return;
+
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    
+    const audioCtx = new AudioContext();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    const now = audioCtx.currentTime;
+
+    if (type === 'blue') {
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(1600, now);
+        osc.frequency.exponentialRampToValueAtTime(800, now + 0.04);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+        osc.start(now);
+        osc.stop(now + 0.04);
+    } else if (type === 'red') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(1000, now);
+        osc.frequency.exponentialRampToValueAtTime(400, now + 0.05);
+        gain.gain.setValueAtTime(0.4, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+        osc.start(now);
+        osc.stop(now + 0.05);
+    } else if (type === 'silent') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(450, now);
+        osc.frequency.exponentialRampToValueAtTime(150, now + 0.06);
+        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+        osc.start(now);
+        osc.stop(now + 0.06);
+    }
+}
