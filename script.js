@@ -14,55 +14,47 @@ function initCPSDemoSlider() {
     slider.addEventListener('input', (e) => {
         const val = parseFloat(e.target.value).toFixed(2);
         badgeVal.textContent = `${val} CPS`;
-        liveCounter.textContent = val;
+        liveCounter.textContent = `${val} CPS`;
     });
 }
 
 function initFAQAccordion() {
-    const faqItems = document.querySelectorAll('.faq-item');
+    const faqCards = document.querySelectorAll('.faq-card');
 
-    faqItems.forEach((item) => {
-        item.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(i => i.classList.remove('active'));
+    faqCards.forEach((card) => {
+        card.addEventListener('click', () => {
+            const isActive = card.classList.contains('active');
+            faqCards.forEach(c => c.classList.remove('active'));
             if (!isActive) {
-                item.classList.add('active');
+                card.classList.add('active');
             }
         });
     });
 }
 
 function initMockupControls() {
-    const toggleBtn = document.getElementById('demo-toggle-btn');
-    const statusText = document.getElementById('status-tag-text');
+    const stopBtn = document.getElementById('stop-toggle-btn');
     let isRunning = true;
 
-    if (!toggleBtn || !statusText) return;
+    if (!stopBtn) return;
 
-    toggleBtn.addEventListener('click', () => {
+    stopBtn.addEventListener('click', () => {
         isRunning = !isRunning;
         if (isRunning) {
-            toggleBtn.textContent = 'Stop (F6)';
-            toggleBtn.style.background = 'var(--accent-crimson)';
-            statusText.textContent = 'Running (Synced 240Hz)';
+            stopBtn.textContent = 'Stop (F6)';
+            stopBtn.style.background = 'var(--accent-crimson)';
         } else {
-            toggleBtn.textContent = 'Start (F6)';
-            toggleBtn.style.background = 'var(--accent-blue)';
-            statusText.textContent = 'Stopped';
+            stopBtn.textContent = 'Start (F6)';
+            stopBtn.style.background = 'var(--accent-blue)';
         }
     });
 
-    const segmentBtns = document.querySelectorAll('.mockup-body .segment-btn');
-    segmentBtns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
+    const pillBtns = document.querySelectorAll('.showcase-content .pill-btn');
+    pillBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
             const parent = btn.parentElement;
-            parent.querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
+            parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            const soundType = btn.getAttribute('data-sound');
-            if (soundType) {
-                playWebAudioSound(soundType);
-            }
         });
     });
 }
