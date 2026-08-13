@@ -1,243 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Pulse AutoClicker - Modern, High-Precision Windows AutoClicker & Macro Engine. Sub-millisecond click timing, 2-decimal precision, dual trigger modes, and HWID key protection.">
-  <meta name="keywords" content="autoclicker, pulse autoclicker, high precision autoclicker, windows autoclicker, 500 cps, macro engine, hold mode autoclicker">
-  <title>Pulse AutoClicker — High-Precision Windows AutoClicker Engine</title>
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulse AutoClicker • High-Precision Rust AutoClicker Engine</title>
+    <meta name="description" content="Download Pulse AutoClicker: High-precision desktop click engine built in Rust with sub-millisecond timing, frame sync, custom mechanical switch click sounds, and custom background wallpapers.">
+    <meta name="theme-color" content="#0a0b10">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Header Navigation -->
-  <header>
-    <div class="container">
-      <nav>
-        <a href="#" class="logo">
-          <div class="logo-icon">⚡</div>
-          <span>Pulse AutoClicker</span>
-        </a>
-        <ul class="nav-links">
-          <li><a href="#features">Features</a></li>
-          <li><a href="#simulator">Simulator</a></li>
-          <li><a href="#activation">Activation</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-        <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip" class="nav-cta" id="nav-download-btn">Download Release (.zip)</a>
-      </nav>
-    </div>
-  </header>
+    <!-- Background Glow Effects -->
+    <div class="glow-sphere glow-1"></div>
+    <div class="glow-sphere glow-2"></div>
+    <div class="glow-sphere glow-3"></div>
 
-  <!-- Hero Section -->
-  <section class="hero" id="download">
-    <div class="container">
-      <div class="hero-badge">⚡ Sub-Millisecond Windows Click Engine • v1.01 Release</div>
-      <h1>The <span>Fastest AutoClicker</span> for Windows</h1>
-      <p>Sub-millisecond click execution, 2-decimal precision (up to 500.00 CPS), dual trigger modes (Toggle & Hold), global unfocused hotkeys, and JSON preset persistence.</p>
-      
-      <div class="hero-buttons">
-        <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip" class="btn-primary" id="main-download-zip">
-          <span>🗜️ Download Pulse AutoClicker v1.0 (.zip)</span>
-        </a>
-      </div>
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">Pulse <span class="logo-accent">AutoClicker</span></span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#demo">Live Demo</a>
+                <a href="#sounds">Sound Engine</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#faq">FAQ</a>
+            </nav>
 
-      <!-- Live Simulator Component -->
-      <div class="simulator-box" id="simulator">
-        <div class="sim-header">
-          <div class="sim-title">⚡ Interactive Pulse Click Engine Simulator</div>
-          <div class="sim-badge">Live Hardware Demo</div>
-        </div>
-
-        <div class="sim-grid">
-          <div class="sim-control">
-            <label for="sim-cps-slider">Clicks Per Second (CPS)</label>
-            <div class="sim-slider-row">
-              <input type="range" id="sim-cps-slider" min="0.01" max="100" step="0.01" value="28.52">
-              <span class="sim-val-badge" id="sim-cps-val">28.52 CPS</span>
+            <div class="nav-cta">
+                <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip" class="btn btn-primary btn-nav">
+                    <span class="btn-icon">⚡</span> Download ZIP
+                </a>
             </div>
-          </div>
+        </div>
+    </header>
 
-          <div class="sim-control">
-            <label for="sim-duty-slider">Click Duty Cycle (Hold %)</label>
-            <div class="sim-slider-row">
-              <input type="range" id="sim-duty-slider" min="0.01" max="99.99" step="0.01" value="50.00">
-              <span class="sim-val-badge" id="sim-duty-val">50.00 %</span>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge-pill">
+                    <span class="badge-dot"></span>
+                    <span class="badge-text">v1.0.1 RELEASE • Built with Pure Rust</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    High Precision <br>
+                    <span class="gradient-text">AutoClick Engine</span>
+                </h1>
+                
+                <p class="hero-description">
+                    Sub-millisecond click timing up to 500 CPS, Win32 frame sync, mechanical switch sound synthesis, custom wallpapers & HWID security.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip" class="btn btn-primary btn-hero">
+                        <span class="btn-icon">⚡</span> Download Pulse AutoClicker v1.0 (.ZIP)
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        Explore Features
+                    </a>
+                </div>
+
+                <div class="hero-specs">
+                    <div class="spec-item">
+                        <span class="spec-value">0.01-500</span>
+                        <span class="spec-label">CPS Precision</span>
+                    </div>
+                    <div class="spec-divider"></div>
+                    <div class="spec-item">
+                        <span class="spec-value">&lt; 0.5ms</span>
+                        <span class="spec-label">Latency Jitter</span>
+                    </div>
+                    <div class="spec-divider"></div>
+                    <div class="spec-item">
+                        <span class="spec-value">100%</span>
+                        <span class="spec-label">Native Win32 FFI</span>
+                    </div>
+                </div>
             </div>
-          </div>
+
+            <!-- Interactive App Mockup Preview -->
+            <div class="hero-mockup-wrapper" id="demo">
+                <div class="mockup-card glass-panel">
+                    <div class="mockup-header">
+                        <div class="window-controls">
+                            <span class="dot close"></span>
+                            <span class="dot minimize"></span>
+                            <span class="dot maximize"></span>
+                        </div>
+                        <div class="mockup-title">Pulse AutoClicker v1.0.1</div>
+                        <div class="mockup-status-tag active">
+                            <span class="pulse-dot"></span> <span id="status-tag-text">Running (Synced 240Hz)</span>
+                        </div>
+                    </div>
+
+                    <div class="mockup-body">
+                        <!-- Sidebar Mockup -->
+                        <div class="mockup-sidebar">
+                            <div class="sidebar-btn active">⚡ Clicker</div>
+                            <div class="sidebar-btn">⚙ Settings</div>
+                            <div class="sidebar-btn">🛠 Tweaks</div>
+                            <div class="sidebar-btn">📊 Analytics</div>
+                            <div class="sidebar-btn">ℹ About</div>
+                        </div>
+
+                        <!-- Main Mockup View -->
+                        <div class="mockup-main">
+                            <div class="mockup-section-header">
+                                <h3>AutoClicker Configuration</h3>
+                            </div>
+
+                            <div class="mockup-control-row">
+                                <label>Clicks per second:</label>
+                                <div class="slider-display-group">
+                                    <input type="range" id="cps-slider" min="1" max="100" value="28" class="demo-slider">
+                                    <span class="badge-value" id="cps-val">28.52 CPS</span>
+                                </div>
+                            </div>
+
+                            <div class="mockup-control-row">
+                                <label>Duty cycle (hold %):</label>
+                                <div class="slider-display-group">
+                                    <input type="range" min="1" max="99" value="50" class="demo-slider">
+                                    <span class="badge-value">50.00 %</span>
+                                </div>
+                            </div>
+
+                            <div class="mockup-control-row">
+                                <label>Click Sound:</label>
+                                <div class="segmented-control">
+                                    <button class="segment-btn active" data-sound="off">Off</button>
+                                    <button class="segment-btn" data-sound="blue">MX Blue</button>
+                                    <button class="segment-btn" data-sound="red">MX Red</button>
+                                    <button class="segment-btn" data-sound="silent">Silent</button>
+                                </div>
+                            </div>
+
+                            <div class="mockup-control-row">
+                                <label>Trigger Button:</label>
+                                <div class="segmented-control">
+                                    <button class="segment-btn active">Left</button>
+                                    <button class="segment-btn">Right</button>
+                                </div>
+                            </div>
+
+                            <div class="mockup-control-row">
+                                <label>Hotkey Mode:</label>
+                                <div class="segmented-control">
+                                    <button class="segment-btn active">Toggle (F6)</button>
+                                    <button class="segment-btn">Hold (F6)</button>
+                                </div>
+                            </div>
+
+                            <div class="mockup-action-bar">
+                                <button class="mockup-toggle-btn" id="demo-toggle-btn">
+                                    Stop (F6)
+                                </button>
+                                <div class="live-counter">
+                                    <span class="counter-label">Measured CPS:</span>
+                                    <span class="counter-val" id="live-cps-counter">28.52</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <button class="click-target-btn" id="click-target-btn">
-          🎯 Click Here to Test Speed & Timing
-        </button>
+    <!-- Features Grid -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">ENGINE HIGHLIGHTS</span>
+                <h2 class="section-title">Built For Maximum Latency Precision</h2>
+                <p class="section-subtitle">Pulse AutoClicker combines low-level Win32 kernel calls with Rust speed for zero-jitter performance.</p>
+            </div>
 
-        <div style="margin-top: 16px;">
-          <button class="btn-primary" id="sim-toggle-btn" style="width: 100%; justify-content: center; padding: 12px;">
-            ▶ Test AutoClicker Engine
-          </button>
+            <div class="features-grid">
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Sub-Millisecond Click Timing</h3>
+                    <p>Uses Win32 <code>timeBeginPeriod(1)</code> high-resolution multimedia timers for exact sub-millisecond click intervals up to 500 CPS.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Monitor Refresh Frame Sync</h3>
+                    <p>Integrates GDI <code>EnumDisplaySettingsW</code> to automatically detect your monitor refresh rate (60Hz, 144Hz, 240Hz, 360Hz) and lock click timing.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Ultra Accuracy Spin-Lock</h3>
+                    <p>Escalates thread execution priority to <code>THREAD_PRIORITY_HIGHEST</code> with spin-looping for zero-jitter hit registration in games.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🔊</div>
+                    <h3>Mechanical Switch Sounds</h3>
+                    <p>Real-time audio synthesis for Cherry MX Blue, Cherry MX Red, and Silent mechanical switches with zero input latency.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🖼️</div>
+                    <h3>Custom Wallpaper Backgrounds</h3>
+                    <p>Load custom <code>.png</code>/<code>.jpg</code> background wallpapers directly in settings with adjustable darkening overlay controls.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics & Lifetime Stats</h3>
+                    <p>Real-time persistent lifetime click counters, session click tracking, and peak measured CPS benchmarking saved automatically.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Windows Optimizer Integration</h3>
+                    <p>1-click launch for <code>Optimizer.exe</code> with Administrator elevation to clean background junk and lower OS latency.</p>
+                </div>
+
+                <div class="feature-card glass-panel">
+                    <div class="feature-icon">🔒</div>
+                    <h3>HWID Security Key Lock</h3>
+                    <p>Secured by a mathematical 1-person Hardware ID checksum verification system to protect license distribution.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="click-stat-row">
-          <div>
-            <div class="stat-number" id="live-cps-stat">0.0</div>
-            <div class="stat-label">Measured CPS</div>
-          </div>
-          <div>
-            <div class="stat-number" id="total-clicks-stat">0</div>
-            <div class="stat-label">Total Clicks</div>
-          </div>
-          <div>
-            <div class="stat-number" style="color: var(--accent-cyan);">0.001 ms</div>
-            <div class="stat-label">Timing Precision</div>
-          </div>
+    <!-- Interactive Sound Engine Demo Section -->
+    <section class="sound-section" id="sounds">
+        <div class="container">
+            <div class="sound-card glass-panel">
+                <div class="sound-info">
+                    <span class="section-tag">AUDIO SYNTHESIS</span>
+                    <h2>Mechanical Switch Sound Engine</h2>
+                    <p>Test real-time switch audio feedback simulated directly using Web Audio API synthesis!</p>
+                </div>
+
+                <div class="sound-buttons">
+                    <button class="sound-demo-btn" onclick="playWebAudioSound('blue')">
+                        <span class="switch-dot blue"></span>
+                        <span class="switch-name">Cherry MX Blue</span>
+                        <span class="switch-desc">Crisp Clicky</span>
+                    </button>
+
+                    <button class="sound-demo-btn" onclick="playWebAudioSound('red')">
+                        <span class="switch-dot red"></span>
+                        <span class="switch-name">Cherry MX Red</span>
+                        <span class="switch-desc">Linear Medium</span>
+                    </button>
+
+                    <button class="sound-demo-btn" onclick="playWebAudioSound('silent')">
+                        <span class="switch-dot silent"></span>
+                        <span class="switch-name">Silent Switch</span>
+                        <span class="switch-desc">Soft Low</span>
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- FAQ Accordion -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">NEED HELP?</span>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Built for Speed, Precision & Control</h2>
-        <p>Engineered in Rust with native Windows Win32 API calls for maximum performance and low memory overhead.</p>
-      </div>
+            <div class="faq-list">
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>How do I install Pulse AutoClicker?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Download the official release <code>PulseAutoClicker_v1.0.zip</code> package. Extract it and run <code>PulseAutoClicker_Setup.exe</code> to install, or launch <code>pulse_autoclicker.exe</code> directly!</p>
+                    </div>
+                </div>
 
-      <div class="features-grid">
-        <div class="feature-card" id="feature-speed">
-          <div class="feature-icon">⚡</div>
-          <h3>500+ CPS Engine</h3>
-          <p>Powered by Win32 <code>SendInput</code> and high-precision timer calls (<code>timeBeginPeriod</code>) for instant, sub-millisecond click execution.</p>
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>What if Windows Smart App Control blocks the zip file?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Because the app is built from fresh open-source binaries, right-click <code>PulseAutoClicker_v1.0.zip</code> &rarr; select <strong>Properties</strong> &rarr; check <strong>Unblock</strong> at the bottom &rarr; click Apply. You can also run <code>Unblock-File -Path .\PulseAutoClicker_v1.0.zip</code> in PowerShell.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>How does Frame Sync work?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Frame Sync queries your primary display adapter's refresh rate via Win32 <code>EnumDisplaySettingsW</code> (e.g. 144Hz or 240Hz) and caps click intervals to align perfectly with your monitor's display frames.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item glass-panel">
+                    <div class="faq-question">
+                        <span>Where are presets and license keys stored?</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All settings, presets (<code>presets.json</code>), license keys (<code>license.lic</code>), lifetime statistics (<code>stats.json</code>), and wallpapers are stored safely in <code>%APPDATA%\PulseAutoClicker</code>.</p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="feature-card" id="feature-precision">
-          <div class="feature-icon">🎯</div>
-          <h3>2-Decimal Precision</h3>
-          <p>Fine-tune both your Click Rate (e.g. <code>28.52 CPS</code>) and Duty Cycle (e.g. <code>50.00 %</code>) down to two exact decimal places.</p>
+    <!-- Footer Banner CTA -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-banner glass-panel">
+                <h2>Ready for High Precision AutoClicking?</h2>
+                <p>Download Pulse AutoClicker today and experience sub-millisecond click responsiveness.</p>
+                <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip" class="btn btn-primary btn-hero">
+                    <span class="btn-icon">⚡</span> Download PulseAutoClicker_v1.0.zip
+                </a>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <span class="logo-icon">⚡</span> <strong>Pulse AutoClicker</strong> &copy; 2026 • All Rights Reserved.
+                </div>
+                <div class="footer-right">
+                    <a href="https://github.com/kebabcode1/pulse-autoclicker/releases/download/v1.01/PulseAutoClicker_v1.0.zip">Official Release ZIP</a>
+                </div>
+            </div>
         </div>
+    </footer>
 
-        <div class="feature-card" id="feature-modes">
-          <div class="feature-icon">🕹️</div>
-          <h3>Toggle & Hold Modes</h3>
-          <p>Choose between <strong>Toggle Mode</strong> (press key to start/stop) and <strong>Hold Mode</strong> (auto-clicks while key is held down).</p>
-        </div>
-
-        <div class="feature-card" id="feature-hotkeys">
-          <div class="feature-icon">🌐</div>
-          <h3>Global Unfocused Listener</h3>
-          <p>Listens for hotkey triggers system-wide even when Pulse AutoClicker is running unfocused in the background. Supports mouse buttons (Left, Right, Middle, X1, X2).</p>
-        </div>
-
-        <div class="feature-card" id="feature-presets">
-          <div class="feature-icon">💾</div>
-          <h3>JSON Preset Manager</h3>
-          <p>Create, save, and delete custom click configurations. Saved configurations persist automatically in <code>presets.json</code>.</p>
-        </div>
-
-        <div class="feature-card" id="feature-hwid">
-          <div class="feature-icon">🔒</div>
-          <h3>HWID Key Binding</h3>
-          <p>Cryptographically locks license access keys to your computer's Hardware ID (HWID) with instant auto-login on launch.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Activation Guide Section -->
-  <section class="activation-section" id="activation">
-    <div class="container">
-      <div class="section-header">
-        <h2>Simple 4-Step Key Activation</h2>
-        <p>Pulse AutoClicker uses Hardware ID (HWID) license binding for seamless, 1-person key protection.</p>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">01</div>
-          <h4>Download Release</h4>
-          <p>Download <code>PulseAutoClicker_v1.0.zip</code> and extract the files to any folder.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">02</div>
-          <h4>Copy System HWID</h4>
-          <p>Launch the app. On the login screen, click <strong><code>📋 Copy HWID</code></strong> to copy your unique system hardware ID.</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">03</div>
-          <h4>Receive Access Key</h4>
-          <p>Send your HWID to your seller/admin to receive your mathematically locked key (<code>PA-XXXX-XXXX-XX</code>).</p>
-        </div>
-
-        <div class="step-card">
-          <div class="step-number">04</div>
-          <h4>Activate & Auto-Login</h4>
-          <p>Paste your key and click <strong>Activate</strong>. Pulse AutoClicker will auto-log in every time you open the app!</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section class="faq-section" id="faq">
-    <div class="container">
-      <div class="section-header">
-        <h2>Frequently Asked Questions</h2>
-        <p>Everything you need to know about installation, security, and usage.</p>
-      </div>
-
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>Does Pulse AutoClicker work when minimized or unfocused?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" style="display: none;">
-            Yes! Pulse AutoClicker uses a background Windows event thread (<code>GetAsyncKeyState</code>) that detects key and mouse presses system-wide even when you are focused on a game or application.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>What should I do if Windows SmartScreen or Chrome blocks the download?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" style="display: none;">
-            Because Pulse AutoClicker is a newly published independent application that simulates hardware input calls (<code>SendInput</code>), security scanners or Smart App Control may show a warning:
-            <br><br>
-            • <strong>Windows 11 Smart App Control / Unblock</strong>: Right-click <code>PulseAutoClicker_Setup.exe</code> -> <em>Properties</em> -> Check <em>Unblock</em> -> Click <em>OK</em>.<br>
-            • <strong>Google Chrome</strong>: Go to Downloads (<code>Ctrl + J</code>) -> Click <em>Keep dangerous file</em> -> <em>Keep anyway</em>.
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-question">
-            <span>How do I uninstall Pulse AutoClicker?</span>
-            <span>+</span>
-          </div>
-          <div class="faq-answer" style="display: none;">
-            Pulse AutoClicker includes a native uninstaller (<code>pulseuninstaller.exe</code>) integrated into Windows Control Panel. Simply go to <strong>Windows Settings -> Apps -> Installed Apps -> Pulse AutoClicker -> Uninstall</strong>.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <p>© 2026 Pulse AutoClicker. Built for High-Precision Windows Performance.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
